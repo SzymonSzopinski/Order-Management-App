@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strona główna</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <main>
+      <aside>
+        <div class="sidebar active">
+          <div class="logo-menu">
+            <h2 class="logo"></h2>
+            <i class="bx bx-menu toggle-btn"></i>
+          </div>
+
+          <ul class="list">
+            <li class="list-item">
+              <a href="index.html">
+                <i class="bx bxs-dashboard"></i>
+                <span class="link-name">Strona główna</span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="index.html">
+                <i class="bx bxs-shopping-bag"></i>
+                <span class="link-name">Wyświetl zamówienia</span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="addOrderForm.html">
+                <i class="bx bx-cart-add"></i>
+                <span class="link-name">Dodaj zamówienia</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <div class="container">
+        <h1>Dodaj nowe zamówienie</h1>
+        <br />
+        <form id="form">
+          <div class="row">
+            <div class="col-70">
+              <div class="form-group">
+                <label>Czas</label>
+                <input type="date" class="form-control" style="width: 50%" />
+              </div>
+              <div class="form-group">
+                <label>Status zamówienia</label>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Oddział</label>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Sposób dostawy</label>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Rodzaj płatności</label>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <label>Notatka do zamówienia</label>
+              <textarea class="form-control"></textarea>
+              <div class="display-flex product-container">
+                <div class="product-data">
+                    <div class="add-product">
+                        <div style="width: 500px;">
+                          <label for="">Dodaj produkt do zamówienia</label>
+                          <select class="form-control" style="flex: 1 1 auto; min-width: 50%; max-width: 500px;">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                          </select>
+                        </div>
+                        <div class="form-group field-quantity">
+                          <label for="">Ilość</label>
+                          <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group field-product-price">
+                          <label for="">Cena PLN</label>
+                          <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="extra-product-data">
+                        <div class="text">
+                          <span>Id produktu: </span>
+                        </div>
+                        <div class="text">
+                          <span>Cena: </span>
+                          <span>PLN</span>
+                        </div>
+                        <div class="text">
+                          <span>Ilość: </span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-info small-button">+</button>
+              </div>
+              <div class="products-container">
+                <h3 class="title-list">Lista produktów</h3>
+                <h4 class="empty-list">Lista jest pusta</h3>
+              </div>
+              <div class="display-flex">
+                <h4 style="font-weight: 600; margin: 0 0 0 auto;">Suma:</h4>
+                <div style="font-size: 18px; margin-left: 4px;">0</div>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-info" type="submit">Zapisz</button>
+                <a class="btn btn-info" href="orders.html">Anuluj</a>
+              </div>
+            </div>
+            <div class="col-50" style="border-left: 2px solid #d2ab67">
+              <div class="row">
+                <div class="col-60">
+                  <h5>Dane zamawiającego</h5>
+                  <div class="form-group">
+                    <label for="username">Imię</label>
+                    <input class="form-control" id="username" name="username" type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Nazwisko</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Numer telefonu</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Uwagi do zamówienia</label>
+                    <textarea class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="col-60">
+                  <h5>Adres dostawy</h5>
+                  <div class="form-group">
+                    <label>Ulica</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Numer domu/mieszkania</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Kod pocztowy</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Miasto</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Województwo</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Kraj</label>
+                    <input class="form-control" />
+                    <div class="error"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
