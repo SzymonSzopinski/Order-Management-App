@@ -51,35 +51,50 @@
                 <input type="date" class="form-control" style="width: 50%" />
               </div>
               <div class="form-group">
-                <label>Status zamówienia</label>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                <label for="orderStatus">Status zamówienia</label>
+                <select id="orderStatus" name="orderStatus" class="form-control">
+                    <option>Nowe</option>
+                    <option>Rezerwacja</option>
+                    <option>Klient umówiony na zakup w sklepie</option>
+                    <option>Anulowane</option>
+                    <option>Zwrócone</option>
+                    <option>Nieudane</option>
+                    <option>Odrzucone</option>
+                    <option>Zatwierdzone - oczekiwanie na przelew</option>
+                    <option>Zatwierdzone - w trakcie realizacji</option>
+                    <option>Płatność zaakceptowana</option>
+                    <option>Wysłano</option>
+                    <option>Gotowe do odbioru w oddziale</option>
+                    <option >Zrealizowane</option>
                 </select>
               </div>
               <div class="form-group">
-                <label>Oddział</label>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                <label for="branch">Oddział</label>
+                <select id="branch" name="branch" class="form-control">
+                  <option>Wrocław</option>
+                  <option>Katowice</option>
+                  <option>Lublin</option>
+                  <option>Poznań</option>
+                  <option>Warszawa</option>
+                  <option>Krakow</option>
                 </select>
               </div>
               <div class="form-group">
-                <label>Sposób dostawy</label>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                <label for="shippingMethod">Sposób dostawy</label>
+                <select id="shippingMethod" name="shippingMethod" class="form-control">
+                  <option>DHL</option>
+                  <option>UPS</option>
+                  <option>InPost</option>
+                  <option>Platność przy odbiorze</option>
                 </select>
               </div>
               <div class="form-group">
-                <label>Rodzaj płatności</label>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                <label for="paymentMethod">Rodzaj płatności</label>
+                <select id="paymentMethod" name="paymentMethod" class="form-control">
+                  <option>Przelew bankowy</option>
+                  <option>Gotówką</option>
+                  <option>Płatność kartą</option>
+                  <option>Przy odbiorze</option>
                 </select>
               </div>
               <label>Notatka do zamówienia</label>
@@ -87,7 +102,7 @@
               <div class="display-flex product-container">
                 <div class="product-data">
                     <div class="add-product">
-                        <div style="width: 500px;">
+                        <div style="width: 350px;">
                           <label for="">Dodaj produkt do zamówienia</label>
                           <select class="form-control" style="flex: 1 1 auto; min-width: 50%; max-width: 500px;">
                             <option>1</option>
@@ -97,7 +112,7 @@
                         </div>
                         <div class="form-group field-quantity">
                           <label for="">Ilość</label>
-                          <input type="text" class="form-control">
+                          <input type="number" class="form-control" value="1" default="1" min="1" step="1">
                         </div>
                         <div class="form-group field-product-price">
                           <label for="">Cena PLN</label>
@@ -137,60 +152,60 @@
                 <div class="col-60">
                   <h5>Dane zamawiającego</h5>
                   <div class="form-group">
-                    <label for="username">Imię</label>
-                    <input class="form-control" id="username" name="username" type="text" />
+                    <label for="firstName">Imię</label>
+                    <input class="form-control" id="firstName" name="firstName" type="text" />
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Nazwisko</label>
-                    <input class="form-control" />
+                    <label for="lastName">Nazwisko</label>
+                    <input class="form-control" id="lastName" name="lastName" type="text" />
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Email</label>
-                    <input class="form-control" />
+                    <labe for="email">Email</label>
+                    <input class="form-control" id="email" name="email" type="text"  />
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Numer telefonu</label>
-                    <input class="form-control" />
+                    <label for="phoneNumber">Numer telefonu</label>
+                    <input class="form-control" id="phoneNumber" name="phoneNumber" type="text" />
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Uwagi do zamówienia</label>
-                    <textarea class="form-control"></textarea>
+                    <label for="customerNoteToOrder">Uwagi do zamówienia</label>
+                    <textarea class="form-control" id="customerNoteToOrder" name="customerNoteToOrder" type="text"></textarea>
                   </div>
                 </div>
                 <div class="col-60">
                   <h5>Adres dostawy</h5>
                   <div class="form-group">
-                    <label>Ulica</label>
-                    <input class="form-control" />
+                    <label for="street">Ulica</label>
+                    <input class="form-control" id="street" name="street" type="text" />
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Numer domu/mieszkania</label>
-                    <input class="form-control" />
+                    <label for="houseNumber">Numer domu/mieszkania</label>
+                    <input class="form-control" id="houseNumber" name="houseNumber" type="text"/>
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Kod pocztowy</label>
-                    <input class="form-control" />
+                    <label for="zipCode">Kod pocztowy</label>
+                    <input class="form-control" id="zipCode" name="zipCode" type="text"/>
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Miasto</label>
-                    <input class="form-control" />
+                    <label for="city">Miasto</label>
+                    <input class="form-control" id="city" name="city" type="text" />
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Województwo</label>
-                    <input class="form-control" />
+                    <label for="province">Województwo</label>
+                    <input class="form-control" id="province" name="province" type="text" />
                     <div class="error"></div>
                   </div>
                   <div class="form-group">
-                    <label>Kraj</label>
-                    <input class="form-control" />
+                    <label for="country">Kraj</label>
+                    <input class="form-control" id="country" name="country" type="text"/>
                     <div class="error"></div>
                   </div>
                 </div>
