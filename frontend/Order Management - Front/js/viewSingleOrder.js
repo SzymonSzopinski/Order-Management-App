@@ -35,7 +35,6 @@ getOrderById(`http://localhost:8080/orders/order/${id}`)
         // Tworzymy nowy element div dla każdego produktu
         const productDiv = document.createElement("div");
 
-        // Ustawiamy zawartość diva na dane produktu
         productDiv.innerHTML = `
         <div class="display-flex">
           <div class="product-data">

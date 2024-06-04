@@ -59,3 +59,23 @@ export function getOrderById(url) {
       throw error;
     });
 }
+
+export function putData(url, data) {
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error fetching data: ", error);
+      throw error;
+    });
+}

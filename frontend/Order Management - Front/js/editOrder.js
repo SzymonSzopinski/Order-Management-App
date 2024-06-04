@@ -1,4 +1,11 @@
-import { getData, getOrderById } from "./api.js";
+import { getData, getOrderById, putData } from "./api.js";
+import { validateForm, formFields, resetFormFields } from "./validation.js";
+import { createFormObject } from "./form.js";
+import {
+  loadProducts,
+  addProductToList,
+  updateTotalCostDisplay,
+} from "./productOrderManager.js";
 
 const getOrderIdFromUrl = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -6,103 +13,98 @@ const getOrderIdFromUrl = () => {
 };
 
 const id = getOrderIdFromUrl();
+let productCount = 0;
 
-getOrderById(`http://localhost:8080/orders/order/${id}`)
-  .then((order) => {
-    // document.querySelector("#dateCreated").value = order.dateCreated;
+const form = document.querySelector("#form");
+const messageDiv = document.querySelector("#order-added-success");
+const closeAlertButton = document.querySelector("#order-added-success .close");
 
-    document.querySelector("#status").value = order.status;
+getOrderById(`http://localhost:8080/orders/order/${id}`).then((order) => {
+  console.log("Order loaded: ", order);
+  document.querySelector("#dateCreated").value = order.dateCreated;
+  document.querySelector("#status").value = order.status;
+  document.querySelector("#branch").value = order.branch;
+  document.querySelector("#deliveryMethod").value = order.deliveryMethod;
+  document.querySelector("#paymentMethod").value = order.paymentMethod;
+  document.querySelector("#noteToOrder").value = order.noteToOrder;
+  document.querySelector("#firstName").value = order.customer.firstName;
+  document.querySelector("#lastName").value = order.customer.lastName;
+  document.querySelector("#phoneNumber").value = order.customer.phoneNumber;
+  document.querySelector("#email").value = order.customer.email;
+  document.querySelector("#customerNoteToOrder").value =
+    order.customer.customerNoteToOrder;
+  document.querySelector("#street").value = order.customer.address.street;
+  document.querySelector("#houseNumber").value =
+    order.customer.address.houseNumber;
+  document.querySelector("#zipCode").value = order.customer.address.zipCode;
+  document.querySelector("#city").value = order.customer.address.city;
+  document.querySelector("#province").value = order.customer.address.province;
+  document.querySelector("#country").value = order.customer.address.country;
+  document.querySelector("#sum").textContent = order.totalPrice;
 
-    document.querySelector("#branch").value = order.branch;
+  displayProductsInOrder(order.orderItem);
+  setTimeout(updateTotalCostDisplay, 0);
+});
 
-    document.querySelector("#deliveryMethod").value = order.deliveryMethod;
-    document.querySelector("#paymentMethod").value = order.paymentMethod;
+const displayProductsInOrder = (orderItems) => {
+  const productsContainer = document.querySelector(".products-container");
+  console.log("displayProductsInOrder called");
+  productsContainer.innerHTML = '<h3 class="title-list">Lista produktów</h3>';
+  orderItems.forEach((item) => {
+    console.log("Loading product with ID: ", item.productId);
+    getData(`http://localhost:8080/products/product/${item.productId}`)
+      .then((product) => {
+        if (product) {
+          console.log("Product loaded: ", product);
+          addProductToList(
+            "selectOrderProducts",
+            ++productCount,
+            item.unitPrice,
+            false,
+            { ...product, quantity: item.quantity } // Ensure quantity is included
+          );
+        } else {
+          console.error(`Product with id ${item.productId} not found`);
+        }
+      })
+      .catch((error) => {
+        console.error(
+          `Error fetching product with id ${item.productId}:`,
+          error
+        );
+      });
+  });
+};
 
-    document.querySelector("#noteToOrder").value = order.noteToOrder;
+const submitForm = (form) => {
+  const formObject = createFormObject(form);
+  console.log("Submitting form with data:", formObject);
+  return putData(`http://localhost:8080/orders/update/${id}`, formObject);
+};
 
-    // getData("http://localhost:8080/products").then((products) => {
-    //   // Dla każdego elementu orderItem w zamówieniu
-    //   order.orderItem.forEach((orderItem) => {
-    //     // Znajdujemy odpowiadający mu produkt
-    //     const product = products.find(
-    //       (prod) => prod.id === orderItem.productId
-    //     );
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    //     // Tworzymy nowy element div dla każdego produktu
-    //     const productDiv = document.createElement("div");
+  const isFormValid = validateForm(formFields);
+  console.log(isFormValid);
+  if (isFormValid) {
+    submitForm(form).then((order) => {
+      messageDiv.style.display = "block";
+      window.location.href = `order-view.html?id=${order.id}`;
+    });
+    resetFormFields(formFields);
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
-    //     // Ustawiamy zawartość diva na dane produktu
-    //     productDiv.innerHTML = `
-    //     <div class="display-flex">
-    //       <div class="product-data">
-    //         <div class="add-product">
-    //           <div class="prod-name-wrapper">
-    //             <div class="prod-title">Produkt</div>
-    //             <div class="prod-name">${product.name}</div>
-    //           </div>
-    //           <div class="prod-name-wrapper">
-    //             <div class="prod-title">Ilość</div>
-    //             <div class="prod-name">${orderItem.quantity}</div>
-    //           </div>
-    //           <div class="prod-name-wrapper">
-    //             <div class="prod-title">Cena PLN</div>
-    //             <div class="prod-name">${orderItem.unitPrice}</div>
-    //           </div>
-    //         </div>
-    //         <div class="extra-product-data">
-    //           <div
-    //             id="prodImg"
-    //             class="extra-product-data-prod-img "
-    //             style="background-image: url(${product.imageUrl}"></div>
-    //           <div class="text">
-    //             <span>Id produktu:</span>
-    //             <span>${product.id}</span>
-    //           </div>
-    //           <div class="text">
-    //             <span>Cena</span>
-    //             <span>${product.unitPrice}</span>
-    //             <span>PLN</span>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>`;
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded event fired");
+  loadProducts("selectOrderProducts");
+});
 
-    //     // Znajdź element h3
-    //     const h3Element = document.querySelector(".products-container h3");
-
-    //     // Dodaj nowy div bezpośrednio po h3
-    //     h3Element.insertAdjacentElement("afterend", productDiv);
-    //   });
-    // });
-
-    // document.querySelector("#customerFirstAndLastName").textContent =
-    //   order.customer.firstName + " " + order.customer.lastName;
-
-    // document.querySelector("#customerEmail").textContent = order.customer.email;
-
-    // document.querySelector("#customerPhoneNumber").textContent =
-    //   order.customer.phoneNumber;
-
-    // document.querySelector("#customerNote").textContent =
-    //   order.customer.customerNoteToOrder;
-
-    // document.querySelector("#customerAddress").textContent =
-    //   order.customer.address.street +
-    //   " " +
-    //   order.customer.address.houseNumber +
-    //   ", " +
-    //   order.customer.address.zipCode +
-    //   ", " +
-    //   order.customer.address.city;
-
-    // document.querySelector("#customerProvince").textContent =
-    //   order.customer.address.province;
-
-    // document.querySelector("#customerCountry").textContent =
-    //   order.customer.address.country;
-
-    // document.querySelector("#sum").textContent = order.totalPrice;
-  })
-  .catch((error) => {
-    console.error("Error:", error);
+document
+  .getElementById("add-product-to-order")
+  .addEventListener("click", (e) => {
+    e.preventDefault();
+    addProductToList("selectOrderProducts", ++productCount);
   });

@@ -1,4 +1,3 @@
-//converting flat structure of FormData to expected JSON object
 export function createFormObject(form) {
   let formObject = {};
 
@@ -21,6 +20,29 @@ export function createFormObject(form) {
       return acc[k];
     }, formObject);
   });
+
+  // Adding order items manually
+  formObject.orderItem = [];
+
+  const productContainers = document.querySelectorAll(
+    ".products-container .display-flex"
+  );
+  productContainers.forEach((container) => {
+    const productId = container.querySelector(".prod-name option").value;
+    const quantity = container.querySelector(".field-quantity input").value;
+    const unitPrice = container.querySelector(
+      ".field-product-price input"
+    ).value;
+
+    formObject.orderItem.push({
+      productId: productId,
+      quantity: parseInt(quantity, 10),
+      unitPrice: parseFloat(unitPrice),
+    });
+  });
+
+  console.log("Form object:", formObject); // Dodane logowanie
+  console.log("Note to order:", formObject.noteToOrder); // Dodane logowanie
 
   return formObject;
 }

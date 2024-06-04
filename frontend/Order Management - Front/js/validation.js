@@ -13,6 +13,7 @@ const fields = [
   "#branch",
   "#deliveryMethod",
   "#paymentMethod",
+  "#customerNoteToOrder",
 ];
 
 export const formFields = fields.map((id) => document.querySelector(id));
@@ -109,7 +110,8 @@ export const validateInputs = (field) => {
     field.id === "status" ||
     field.id === "branch" ||
     field.id === "deliveryMethod" ||
-    field.id === "paymentMethod"
+    field.id === "paymentMethod" ||
+    field.id === "customerNoteToOrder"
   ) {
     setValidationState(field, true, "");
     isValid = true;
