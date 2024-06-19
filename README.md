@@ -64,30 +64,32 @@ To run the unit and integration tests, use the following command:
 
 ```bash
 mvn test
+
 ```
 
 API Endpoints
-Products
 
+Products
 GET /products: Retrieve all products
 GET /products/{id}: Retrieve a product by ID
 POST /products: Create a new product
 PUT /products/{id}: Update an existing product
 DELETE /products/{id}: Delete a product by ID
-Orders
 
+Orders
 GET /orders: Retrieve all orders
 GET /orders/order/{id}: Retrieve an order by ID
 POST /orders: Create a new order
 PUT /orders/update/{id}: Update an existing order
 DELETE /orders/delete/{id}: Delete an order by ID
-Customers
 
+Customers
 GET /customers: Retrieve all customers
 GET /customers/{id}: Retrieve a customer by ID
 POST /customers: Create a new customer
 PUT /customers/{id}: Update an existing customer
 DELETE /customers/{id}: Delete a customer by ID
+
 Demonstration
 To see a video demonstration of the application in action, please visit: https://www.youtube.com/watch?v=CDCWKie-Ppc
 
