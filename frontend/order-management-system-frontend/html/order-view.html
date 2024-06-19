@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <main>
+      <aside>
+        <div class="sidebar active">
+          <div class="logo-menu">
+            <h2 class="logo"></h2>
+            <i class="bx bx-menu toggle-btn"></i>
+          </div>
+
+          <ul class="list">
+            <li class="list-item">
+              <a href="index.html">
+                <i class="bx bxs-dashboard"></i>
+                <span class="link-name">Home Page</span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="orders.html">
+                <i class="bx bxs-shopping-bag"></i>
+                <span class="link-name">View Orders</span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="add-order.html">
+                <i class="bx bx-cart-add"></i>
+                <span class="link-name">Add Orders</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <div class="container">
+        <h1>Order</h1>
+        <br />
+        <p>
+          <a class="btn btn-info text-white">Edit Order</a>
+        </p>
+        <div class="row">
+          <div class="col-70">
+            <div class="form-group">
+              <br />
+              <input
+                disabled
+                type="date"
+                class="form-control"
+                name="dateCreated"
+                id="dateCreated"
+                style="width: 50%" />
+            </div>
+            <div class="form-group">
+              <label for="status">Order Status</label>
+              <select id="status" name="status" class="form-control" disabled>
+                <option>New</option>
+                <option>Reservation</option>
+                <option>Customer Scheduled for Purchase in Store</option>
+                <option>Canceled</option>
+                <option>Returned</option>
+                <option>Failed</option>
+                <option>Rejected</option>
+                <option>Approved - Awaiting Payment</option>
+                <option>Approved - In Progress</option>
+                <option>Payment Accepted</option>
+                <option>Shipped</option>
+                <option>Ready for Pickup in Branch</option>
+                <option>Completed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="branch">Branch</label>
+              <select id="branch" name="branch" class="form-control" disabled>
+                <option>Wroclaw</option>
+                <option>Katowice</option>
+                <option>Lublin</option>
+                <option>Poznan</option>
+                <option>Warsaw</option>
+                <option>Krakow</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="deliveryMethod">Delivery Method</label>
+              <select
+                id="deliveryMethod"
+                name="deliveryMethod"
+                class="form-control"
+                disabled>
+                <option>DHL</option>
+                <option>UPS</option>
+                <option>InPost</option>
+                <option>Personal collection</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="paymentMethod">Payment Method</label>
+              <select
+                id="paymentMethod"
+                name="paymentMethod"
+                class="form-control"
+                disabled>
+                <option>Bank Transfer</option>
+                <option>Cash</option>
+                <option>Card Payment</option>
+                <option>Cash on Delivery</option>
+              </select>
+            </div>
+            <label>Order Note</label>
+            <textarea
+              class="form-control"
+              name="noteToOrder"
+              id="noteToOrder"
+              disabled></textarea>
+            <br />
+            <div class="products-container">
+              <h3 class="title-list">Product List</h3>
+            </div>
+            <div class="display-flex" style="align-items: center">
+              <h4 style="font-weight: 600; margin: 0 0 0 auto">Total:</h4>
+              <div id="sum" style="font-size: 18px; margin-left: 4px">0</div>
+              <input type="hidden" id="sum-input" name="totalPrice" />
+            </div>
+            <div class="form-group">
+              <a class="btn btn-info" href="orders.html">Back</a>
+            </div>
+          </div>
+          <div class="col-50" style="border-left: 2px solid #d2ab67">
+            <p style="font-size: 22px; font-weight: 500">Customer Details</p>
+            <br />
+            <div class="order-view-customer-details">
+              <span style="font-weight: 500">Name:</span>
+              <br />
+              <span id="customerFirstAndLastName"></span>
+            </div>
+            <div class="order-view-customer-details">
+              <span style="font-weight: 500">Email Address:</span>
+              <br />
+              <span id="customerEmail"></span>
+            </div>
+            <div class="order-view-customer-details">
+              <span style="font-weight: 500">Phone:</span>
+              <br />
+              <span id="customerPhoneNumber"></span>
+            </div>
+            <div class="order-view-customer-details">
+              <span style="font-weight: 500">Order Notes:</span>
+              <br />
+              <span id="customerNote"></span>
+            </div>
+            <br />
+            <p style="font-size: 22px; font-weight: 500">
+              Shipping/Address Details
+            </p>
+            <br />
+            <div class="order-view-customer-details">
+              <span style="font-weight: 500">Address:</span>
+              <br />
+              <span id="customerAddress"></span>
+            </div>
+            <div class="order-view-customer-details">
+              <span style="font-weight: 500">State/Province:</span>
+              <br />
+              <span id="customerProvince"></span>
+            </div>
+            <div class="order-view-customer-details">
+              <span style="font-weight: 500">Country:</span>
+              <br />
+              <span id="customerCountry"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/js/app.js"></script>
+    <script type="module" src="/js/viewSingleOrder.js"></script>
+  </body>
+</html>

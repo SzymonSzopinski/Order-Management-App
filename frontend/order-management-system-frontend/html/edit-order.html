@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <main>
+      <aside>
+        <div class="sidebar active">
+          <div class="logo-menu">
+            <h2 class="logo"></h2>
+            <i class="bx bx-menu toggle-btn"></i>
+          </div>
+
+          <ul class="list">
+            <li class="list-item">
+              <a href="index.html">
+                <i class="bx bxs-dashboard"></i>
+                <span class="link-name">Home Page</span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="orders.html">
+                <i class="bx bxs-shopping-bag"></i>
+                <span class="link-name">View Orders</span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="add-order.html">
+                <i class="bx bx-cart-add"></i>
+                <span class="link-name">Add Orders</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <div class="container">
+        <div id="order-added-success" class="alert alert-success" role="alert">
+          Order successfully edited
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <h1>Edit Order</h1>
+        <br />
+        <form id="form">
+          <div class="row">
+            <div class="col-70">
+              <div class="form-group">
+                <label for="dateCreated">Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="dateCreated"
+                  name="dateCreated"
+                  style="width: 50%" />
+              </div>
+              <div class="form-group">
+                <label for="status">Order Status</label>
+                <select id="status" name="status" class="form-control">
+                  <option>New</option>
+                  <option>Reservation</option>
+                  <option>Customer Scheduled to Buy in Store</option>
+                  <option>Canceled</option>
+                  <option>Returned</option>
+                  <option>Failed</option>
+                  <option>Rejected</option>
+                  <option>Approved - Waiting for Transfer</option>
+                  <option>Approved - In Progress</option>
+                  <option>Payment Accepted</option>
+                  <option>Sent</option>
+                  <option>Ready for Pickup in Branch</option>
+                  <option>Completed</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="branch">Branch</label>
+                <select id="branch" name="branch" class="form-control">
+                  <option>Wroclaw</option>
+                  <option>Katowice</option>
+                  <option>Lublin</option>
+                  <option>Poznan</option>
+                  <option>Warsaw</option>
+                  <option>Krakow</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="deliveryMethod">Delivery Method</label>
+                <select
+                  id="deliveryMethod"
+                  name="deliveryMethod"
+                  class="form-control">
+                  <option>DHL</option>
+                  <option>UPS</option>
+                  <option>InPost</option>
+                  <option>Personal collection</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <select
+                  id="paymentMethod"
+                  name="paymentMethod"
+                  class="form-control">
+                  <option>Bank Transfer</option>
+                  <option>Cash</option>
+                  <option>Card Payment</option>
+                  <option>Cash on Delivery</option>
+                </select>
+              </div>
+              <label>Order Note</label>
+              <textarea
+                class="form-control"
+                name="noteToOrder"
+                id="noteToOrder"></textarea>
+              <div class="display-flex product-container">
+                <div class="product-data">
+                  <div class="add-product">
+                    <div>
+                      <label for="">Add Product to Order</label>
+                      <select
+                        id="selectOrderProducts"
+                        class="form-control"
+                        style="width: 100%">
+                        <option>Select Product</option>
+                      </select>
+                    </div>
+                    <div class="form-group field-quantity">
+                      <label for="">Quantity</label>
+                      <input
+                        id="quantity"
+                        type="number"
+                        class="form-control"
+                        value="1"
+                        default="1"
+                        min="1"
+                        step="1" />
+                    </div>
+                    <div class="form-group field-product-price">
+                      <label for="">Price PLN</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="ordersProductPrice"
+                        readonly />
+                    </div>
+                  </div>
+                  <div class="extra-product-data">
+                    <div id="prodImg" class="extra-product-data-prod-img">
+                      no photo
+                    </div>
+                    <div class="text">
+                      <span>Product ID: <span id="prodIdDisplay"></span></span>
+                    </div>
+                    <div class="text">
+                      <span>Unit Price: <span id="prodUnitPrice"></span> </span>
+                      <span>PLN</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  id="add-product-to-order"
+                  class="btn btn-info small-button">
+                  +
+                </button>
+              </div>
+              <div class="products-container">
+                <h3 class="title-list">Product List</h3>
+              </div>
+              <div class="display-flex" style="align-items: center">
+                <h4 style="font-weight: 600; margin: 0 0 0 auto">Total:</h4>
+                <div id="sum" style="font-size: 18px; margin-left: 4px">0</div>
+                <input type="hidden" id="sum-input" name="totalPrice" />
+              </div>
+              <div class="form-group">
+                <button class="btn btn-info" type="submit">Save</button>
+                <a class="btn btn-info" href="orders.html">Cancel</a>
+              </div>
+            </div>
+            <div class="col-50" style="border-left: 2px solid #d2ab67">
+              <div class="row">
+                <div class="col-60">
+                  <h5>Customer Information</h5>
+                  <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input
+                      class="form-control"
+                      id="firstName"
+                      name="customer[firstName]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input
+                      class="form-control"
+                      id="lastName"
+                      name="customer[lastName]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                      class="form-control"
+                      id="email"
+                      name="customer[email]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input
+                      class="form-control"
+                      id="phoneNumber"
+                      name="customer[phoneNumber]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="customerNoteToOrder">Order Notes</label>
+                    <textarea
+                      class="form-control"
+                      id="customerNoteToOrder"
+                      name="customer[customerNoteToOrder]"
+                      type="text"></textarea>
+                  </div>
+                </div>
+                <div class="col-60">
+                  <h5>Delivery Address</h5>
+                  <div class="form-group">
+                    <label for="street">Street</label>
+                    <input
+                      class="form-control"
+                      id="street"
+                      name="customer[address][street]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="houseNumber">House/Apartment Number</label>
+                    <input
+                      class="form-control"
+                      id="houseNumber"
+                      name="customer[address][houseNumber]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="zipCode">Postal Code</label>
+                    <input
+                      class="form-control"
+                      id="zipCode"
+                      name="customer[address][zipCode]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="city">City</label>
+                    <input
+                      class="form-control"
+                      id="city"
+                      name="customer[address][city]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="province">Province/State</label>
+                    <input
+                      class="form-control"
+                      id="province"
+                      name="customer[address][province]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="country">Country</label>
+                    <input
+                      class="form-control"
+                      id="country"
+                      name="customer[address][country]"
+                      type="text" />
+                    <div class="error"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="/js/app.js"></script>
+    <script type="module" src="/js/editOrder.js"></script>
+  </body>
+</html>
