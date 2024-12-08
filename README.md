@@ -1,3 +1,4 @@
+
 # Order Management System
 
 ## Overview
@@ -64,42 +65,45 @@ To run the unit and integration tests, use the following command:
 
 ```bash
 mvn test
-
 ```
 
-API Endpoints
+## API Endpoints
 
-Products
-GET /products: Retrieve all products
-GET /products/{id}: Retrieve a product by ID
-POST /products: Create a new product
-PUT /products/{id}: Update an existing product
-DELETE /products/{id}: Delete a product by ID
+### Products
+- **GET /products**: Retrieve all products
+- **GET /products/{id}**: Retrieve a product by ID
+- **POST /products**: Create a new product
+- **PUT /products/{id}**: Update an existing product
+- **DELETE /products/{id}**: Delete a product by ID
 
-Orders
-GET /orders: Retrieve all orders
-GET /orders/order/{id}: Retrieve an order by ID
-POST /orders: Create a new order
-PUT /orders/update/{id}: Update an existing order
-DELETE /orders/delete/{id}: Delete an order by ID
+### Orders
+- **GET /orders**: Retrieve all orders
+- **GET /orders/order/{id}**: Retrieve an order by ID
+- **POST /orders**: Create a new order
+- **PUT /orders/update/{id}**: Update an existing order
+- **DELETE /orders/delete/{id}**: Delete an order by ID
 
-Customers
-GET /customers: Retrieve all customers
-GET /customers/{id}: Retrieve a customer by ID
-POST /customers: Create a new customer
-PUT /customers/{id}: Update an existing customer
-DELETE /customers/{id}: Delete a customer by ID
+### Customers
+- **GET /customers**: Retrieve all customers
+- **GET /customers/{id}**: Retrieve a customer by ID
+- **POST /customers**: Create a new customer
+- **PUT /customers/{id}**: Update an existing customer
+- **DELETE /customers/{id}**: Delete a customer by ID
 
-Demonstration
-To see a video demonstration of the application in action, please visit: https://www.youtube.com/watch?v=CDCWKie-Ppc
+## Demonstration
 
-Learning Frontend Development
-As a backend developer, I created the frontend in an "old-school" manner using HTML, CSS, and JavaScript.
-This approach allowed me to learn the basics of frontend development, which is a good starting point before moving on to modern frameworks like React.
+To see a video demonstration of the application in action, please visit: [YouTube](https://www.youtube.com/watch?v=CDCWKie-Ppc).
+
+## Learning Frontend Development
+
+As a backend developer, I created the frontend in an "old-school" manner using HTML, CSS, and JavaScript.  
+This approach allowed me to learn the basics of frontend development, which is a good starting point before moving on to modern frameworks like React.  
 Having a solid understanding of these fundamentals will help me build better and more intuitive user interfaces in future projects.
 
-Contributing
+## Contributing
+
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or suggestions.
 
-Contact
-For any questions or support, please contact: szymon.szopinski.kontakt@gmail.com
+## Contact
+
+For any questions or support, please contact: **szymon.szopinski.kontakt@gmail.com**
